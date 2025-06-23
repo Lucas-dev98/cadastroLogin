@@ -14,11 +14,13 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.10.1",
+    "axios": "^1.10.0",
     "express": "^5.1.0",
     "mongodb": "^6.17.0",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "jest": "^30.0.2",
     "prisma": "^6.10.1"
   }
 }
