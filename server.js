@@ -3,7 +3,6 @@ import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
-
 import cors from 'cors';
 
 const app = express();
@@ -16,7 +15,7 @@ app.post('/users', async (req, res) => {
       data: {
         email: req.body.email,
         name: req.body.name,
-        age: Number(req.body.age), // Garante que é Int
+        age: String(req.body.age), // Garante que é string
         password: req.body.password,
       },
     });
@@ -54,8 +53,8 @@ app.put('/users/:id', async (req, res) => {
       data: {
         email: req.body.email,
         name: req.body.name,
-        age: Number(req.body.age), // Garante que é Int
-        password: req.body.password, // Inclua password na atualização
+        age: String(req.body.age), // Garante que é string
+        password: req.body.password,
       },
     });
 
@@ -70,7 +69,6 @@ app.put('/users/:id', async (req, res) => {
     });
   }
 });
-
 
 app.delete('/users/:id', async (req, res) => {
   console.log('Parâmetros:', req.params);
@@ -112,9 +110,6 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Erro no login', error: error.message });
   }
 });
-
-
-
 
 app.listen(3000, '0.0.0.0', () => {
   console.log('Servidor rodando na porta 3000');

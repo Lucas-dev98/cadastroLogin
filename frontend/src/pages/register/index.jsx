@@ -37,7 +37,7 @@ function Home() {
     try {
       await api.post('/users', {
         name: inputName.current.value,
-        age: Number(inputAge.current.value), // Garante que é Int
+        age: inputAge.current.value,
         email: inputEmail.current.value,
         password: inputPassword.current.value,
       });
@@ -66,7 +66,7 @@ function Home() {
     try {
       await api.put(`/users/${editingId}`, {
         name: inputName.current.value,
-        age: Number(inputAge.current.value), // Garante que é Int
+        age: inputAge.current.value,
         email: inputEmail.current.value,
         password: inputPassword.current.value, // Inclua password na edição
       });
@@ -106,16 +106,34 @@ function Home() {
       <div className="container">
         <form>
           <h1>Cadastro de Usuario</h1>
-          <input placeholder="name" type="text" ref={inputName} />
-          <input placeholder="age" type="number" ref={inputAge} />
-          <input placeholder="email" type="email" ref={inputEmail} />
           <input
+            name="name"
+            placeholder="name"
+            type="text"
+            ref={inputName}
+            autoComplete="name"
+          />
+          <input
+            name="age"
+            placeholder="age"
+            type="number"
+            ref={inputAge}
+            autoComplete="bday"
+          />
+          <input
+            name="email"
+            placeholder="email"
+            type="email"
+            ref={inputEmail}
+            autoComplete="email"
+          />
+          <input
+            name="password"
             placeholder="senha"
             type="password"
             ref={inputPassword}
             autoComplete="current-password"
           />
-          {/* NOVO */}
           {editingId ? (
             <button type="button" onClick={updateUser}>
               Salvar Edição
@@ -126,7 +144,6 @@ function Home() {
             </button>
           )}
         </form>
-
         {users.map((user) => (
           <div className="card" key={user.id}>
             <div>
