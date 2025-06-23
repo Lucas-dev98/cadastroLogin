@@ -1,42 +1,19 @@
-import { useEffect } from "react";
-import "./style.css";
-import Trash from "../../assets/trash.svg";
-import api from "../../services/api";
+import '../home/style.css';
+import { Link } from 'react-router-dom';
 
 function Home() {
-  let users = [];
-
-
-  async function getUsers(){
-    users = await api.get("/users")
-  }
-
-  useEffect(() => {
-    getUsers()
-  }, [])
-
   return (
-    <div className="container">
-      <form>
-        <h1>Cadastro de Usuario</h1>
-        <input placeholder="name" type="text" />
-        <input placeholder="age" type="number" />
-        <input placeholder="email" type="email" />
-        <button type="button">Register</button>
-      </form>
-
-      {users.map((user) => (
-        <div className="card" key={user.id}>
-          <div>
-            <p>name: <span>{user.name}</span></p>
-            <p>age: <span>{user.age}</span></p>
-            <p>email: <span>{user.email}</span></p>
-          </div>
-          <button>
-            <img src={Trash} alt="Delete User" />
-          </button>
-        </div>
-      ))}
+    <div className="home-container">
+      <h1 className="home-title">Bem-vindo ao Cadastro de Usuários</h1>
+      <p className="home-desc">Faça login ou registre-se para acessar o sistema.</p>
+      <div className="home-btns">
+        <Link to="/login">
+          <button className="home-btn">Login</button>
+        </Link>
+        <Link to="/register">
+          <button className="home-btn">Register</button>
+        </Link>
+      </div>
     </div>
   );
 }

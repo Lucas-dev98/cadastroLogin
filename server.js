@@ -3,7 +3,11 @@ import pkg from '@prisma/client';
 const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
+
+import cors from 'cors';
+
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.post('/users', async (req, res) => {
@@ -12,7 +16,8 @@ app.post('/users', async (req, res) => {
       data: {
         email: req.body.email,
         name: req.body.name,
-        age: req.body.age,
+        age: Number(req.body.age), // Garante que é Int
+        password: req.body.password,
       },
     });
     res.status(201).json({
@@ -43,16 +48,14 @@ app.get('/users', async (req, res) => {
 });
 
 app.put('/users/:id', async (req, res) => {
-  console.log('Parâmetros:', req.params);
-  console.log('Corpo:', req.body);
-
   try {
     const user = await prisma.user.update({
       where: { id: req.params.id },
       data: {
         email: req.body.email,
         name: req.body.name,
-        age: req.body.age,
+        age: Number(req.body.age), // Garante que é Int
+        password: req.body.password, // Inclua password na atualização
       },
     });
 
@@ -61,7 +64,6 @@ app.put('/users/:id', async (req, res) => {
       user,
     });
   } catch (error) {
-    console.error('Erro no update:', error);
     res.status(400).json({
       message: 'Erro ao atualizar usuário',
       error: error.message,
@@ -92,9 +94,28 @@ app.delete('/users/:id', async (req, res) => {
   }
 });
 
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    // Procure o usuário pelo email
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      return res.status(401).json({ message: 'Usuário não encontrado' });
+    }
+    // Aqui deveria comparar a senha (se você salvar senha no banco)
+    if (user.password !== password) {
+      return res.status(401).json({ message: 'Senha incorreta' });
+    }
+    // Se tudo certo, retorna sucesso (pode retornar um token JWT se quiser)
+    res.status(200).json({ message: 'Login realizado com sucesso', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Erro no login', error: error.message });
+  }
+});
 
 
 
-app.listen(3000, () => {
+
+app.listen(3000, '0.0.0.0', () => {
   console.log('Servidor rodando na porta 3000');
 });
