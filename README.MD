@@ -27,12 +27,12 @@ Projeto fullstack de cadastro e login de usuários utilizando **Node.js**, **Exp
 ### 1. Clone o repositório
 
 
-git clone <url-do-repo>
-cd CadastroLogin
+-git clone <url-do-repo>
+-cd CadastroLogin
 
 ### 2 . Configure o Banco de Dados
-    Crie um banco no MongoDB Atlas chamado Users e uma coleção chamada user.
-    No arquivo .env, configure a variável DATABASE_URL com sua string de conexão, exemplo:
+-Crie um banco no MongoDB Atlas chamado Users e uma coleção chamada user.
+No arquivo .env, configure a variável DATABASE_URL com sua string de conexão, exemplo:
 
 
     DATABASE_URL="mongodb+srv://<usuario>:<senha>@<cluster>.mongodb.net/Users?retryWrites=true&w=majority"
@@ -40,27 +40,27 @@ cd CadastroLogin
 
 ### 3. Instale as dependências do backend
 
-npm install
+-npm install
 
 ### 4. Gere o Prisma Client
 
-npx prisma generate
+-npx prisma generate
 
 
 ### 5. Inicie o backend
 
-npm start
+-npm start
 
 O backend ficará disponível em http://localhost:3000.
 
 ### 6. Instale as dependências do frontend
 
-cd frontend
-npm install
+-cd frontend
+-npm install
 
 ### 7. Inicie o frontend
 
-npm run dev
+-npm run dev
 
 O frontend ficará disponível em http://localhost:5173 (ou porta definida pelo Vite).
 
