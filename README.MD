@@ -66,6 +66,7 @@ O frontend ficará disponível em http://localhost:5173 (ou porta definida pelo 
 
 ## 📁 Estrutura de Pastas
 
+```text```
 CadastroLogin/
 │
 ├── prisma/
