@@ -66,7 +66,7 @@ O frontend ficará disponível em http://localhost:5173 (ou porta definida pelo 
 
 ## 📁 Estrutura de Pastas
 
-```text```
+```
 CadastroLogin/
 │
 ├── prisma/
@@ -79,7 +79,7 @@ CadastroLogin/
 ├── server.js
 ├── .env
 └── README.md
-
+```
 
 ## Observações
 O campo age é armazenado como string no banco.
