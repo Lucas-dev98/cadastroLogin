@@ -64,7 +64,7 @@ npm run dev
 
 O frontend ficará disponível em http://localhost:5173 (ou porta definida pelo Vite).
 
-Estrutura de Pastas
+## 📁 Estrutura de Pastas
 
 CadastroLogin/
 │
@@ -75,9 +75,10 @@ CadastroLogin/
 │       └── pages/
 │           └── register/
 │               └── index.jsx
-├── [server.js](http://_vscodecontentref_/0)
+├── server.js
 ├── .env
-└── [README.MD](http://_vscodecontentref_/1)
+└── README.md
+
 
 ## Observações
 O campo age é armazenado como string no banco.
